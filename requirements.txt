@@ -4,3 +4,4 @@ dbt-duckdb
 jupyter
 lingua-language-detector
 plotly
+matplotlib
