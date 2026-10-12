@@ -1,0 +1,6 @@
+pandas
+duckdb
+dbt-duckdb
+jupyter
+lingua-language-detector
+plotly
