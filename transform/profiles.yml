@@ -1,0 +1,7 @@
+berlin_airbnb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: ../warehouse/airbnb.duckdb
+      threads: 4

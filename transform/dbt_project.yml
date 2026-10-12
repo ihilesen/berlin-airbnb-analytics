@@ -1,0 +1,13 @@
+name: berlin_airbnb
+version: "1.0.0"
+profile: berlin_airbnb
+model-paths: ["models"]
+test-paths: ["tests"]
+models:
+  berlin_airbnb:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table
