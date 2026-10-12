@@ -1,0 +1,9 @@
+# Project data and outputs: never upload
+data/raw/
+warehouse/
+dashboard/data/
+.venv/
+transform/target/
+transform/logs/
+__pycache__/
+.ipynb_checkpoints/
