@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_hosts
+    description: One row per host. Superhost status is a snapshot at extract time.
+    columns:
+      - name: host_id
+        data_tests: [unique, not_null]
+      - name: first_listing_at
+        description: Date of the host's first listing. Not the account sign-up date.
+
+  - name: dim_listings
+    description: One row per listing with review activity and quality flags.
+    columns:
+      - name: listing_id
+        data_tests: [unique, not_null]
+      - name: host_id
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_hosts')
+                field: host_id
+      - name: room_type
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['Entire home/apt', 'Private room', 'Shared room', 'Hotel room']
+      - name: price_eur
+        data_tests: [not_null]
+
+  - name: fct_reviews
+    description: One row per review. Use is_kpi_eligible = true for sentiment KPIs.
+    columns:
+      - name: review_id
+        data_tests: [unique, not_null]
+      - name: listing_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('dim_listings')
+                field: listing_id
+      - name: vendor_sentiment
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['positive', 'neutral', 'negative']
